@@ -14,7 +14,6 @@ const BASE_URL = "http://localhost:9999";
 function* loadQuestionsSaga() {
   try {
     const { data } = yield call(axios.get, `${BASE_URL}/questions`);
-    //console.log('questionsSaga: ', data);
 
     yield put(storeQuestions(data));
   } catch (error) {
@@ -31,7 +30,6 @@ export function* getScoreSaga() {
   while (true) {
     try {
       const attempts = yield take(SUBMIT_QUIZ);
-      console.log("getScoreSaga: ", attempts);
       const { data } = yield call(axios.post, `${BASE_URL}/score`, {
         attempts: attempts
       });

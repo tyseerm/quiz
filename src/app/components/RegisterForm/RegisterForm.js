@@ -7,6 +7,7 @@ import {
   registerFormUpdated
 } from "../../state/registerForm/RegisterFormActions";
 import { loadQuestions } from "../../state/questions/QuestionActions";
+import { QUIZ_PAGE } from "../../routes";
 const RegisterForm = ({
   name,
   email,
@@ -18,7 +19,7 @@ const RegisterForm = ({
     <form
       onSubmit={e => {
         registerFormCompleted(e);
-        history.push("/quiz");
+        history.push(QUIZ_PAGE);
       }}
     >
       <div className="m-3 p-3 d-flex justify-content-center">

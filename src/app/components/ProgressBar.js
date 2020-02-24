@@ -1,7 +1,6 @@
 import React from "react";
 import {connect} from 'react-redux'
 
-import { getPercentageInt } from "../utils/MathUtils";
 
 
 const ProgressBar = ({ percentage}) => {
@@ -20,7 +19,7 @@ const ProgressBar = ({ percentage}) => {
 const mapStateToProps = state => {
   const attemptsCount = Object.keys(state.attempts).length;
   const questionsCount = state.questions.length;
-  return { percentage: getPercentageInt(attemptsCount, questionsCount) };
+  return { percentage: Math.round((attemptsCount / questionsCount) * 100)};
 };
 
 export default connect(mapStateToProps)(ProgressBar);

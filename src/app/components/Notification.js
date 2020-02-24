@@ -1,5 +1,6 @@
 import React from "react";
 import {Redirect} from 'react-router';
+import { QUIZ_PAGE } from "../routes";
 
 const Notification = ({ show, type, message, details }) => {
   if (show) {
@@ -9,7 +10,7 @@ const Notification = ({ show, type, message, details }) => {
       </div>
     );
   } else {
-       return <Redirect to='/quiz' />
+       return <Redirect to={QUIZ_PAGE} />
       
   }
 };

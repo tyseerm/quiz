@@ -30,7 +30,6 @@ export const results = (results = {}, { type, payload }) => {
     case SUBMIT_QUIZ:
       return { ...results, submited: true};
     case STORE_SCORE:
-      console.log('QReducer', STORE_SCORE, payload);
       
       return { ...results, score: payload };
 

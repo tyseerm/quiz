@@ -5,6 +5,7 @@ import { useHistory } from "react-router-dom";
 import Question from "./Question";
 import ProgressBar from "../ProgressBar";
 import Button from "../../elements/Button";
+import { REESULTS_PAGE, REGISTER_PAGE } from "../../routes";
 
 const Questions = ({registered, questions, attempts, actions }) => {
   const onAttempt = (questionId, choiceId) => {
@@ -13,11 +14,11 @@ const Questions = ({registered, questions, attempts, actions }) => {
   let history = useHistory();
   const onSubmit = () => {
     actions.submitQuiz({...attempts});
-    history.push('/results');
+    history.push(REESULTS_PAGE);
   };
 
   if(!registered){
-    return <Redirect to='/' />
+    return <Redirect to={REGISTER_PAGE} />
   }
 
   return (
