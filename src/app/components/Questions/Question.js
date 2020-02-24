@@ -22,7 +22,7 @@ const Question = ({ question, onAttempt, attempted }) => (
           }}
           key={choice.id}
           choice={choice}
-          selected= {attempted && attempted === choice.id ? true : false}
+          selected= {attempted && attempted === choice.id}
         />
       ))}
     </div>
