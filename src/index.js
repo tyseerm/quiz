@@ -7,11 +7,13 @@ import store from "./app/state/configureStore";
 import "./index.css";
 import App from "./app/App";
 import * as serviceWorker from "./app/serviceWorker";
-
+import { ConfigContext, configValue } from "./app/config";
 ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
+  <ConfigContext.Provider value={configValue}>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </ConfigContext.Provider>,
   document.getElementById("root")
 );
 

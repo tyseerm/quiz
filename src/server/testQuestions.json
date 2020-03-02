@@ -41,14 +41,17 @@
     "choices": [
       {
         "value": "Horse",
+        "imgSrc": "../img/horse.png",
         "id": 1
       },
       {
         "value": "Dog",
+        "imgSrc": "",
         "id": 2
       },
       {
         "value": "Mobile",
+        "imgSrc": "",
         "id": 3
       }
     ]
@@ -59,14 +62,17 @@
     "choices": [
       {
         "value": "Computer",
+        "imgSrc": "",
         "id": 1
       },
       {
         "value": "Cat",
+        "imgSrc": "../img/cat.png",
         "id": 2
       },
       {
         "value": "Mobile",
+        "imgSrc": "",
         "id": 3
       }
     ]

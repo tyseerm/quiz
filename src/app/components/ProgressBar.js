@@ -1,11 +1,13 @@
-import React from "react";
-import {connect} from 'react-redux'
+import React, {useContext} from "react";
+import {connect} from 'react-redux';
+import { ConfigContext } from './../config';
 
 
 
 const ProgressBar = ({ percentage}) => {
+  const context = useContext(ConfigContext);
   percentage = isNaN(percentage) ? 0 : percentage;
-  return(
+  return !context.showProgressBar ? null : (
   <div className="card m-3 p-3 sticky-top border-dark">
     <h4 className="crard-title">Your progress:</h4>
     <div className="progress">
