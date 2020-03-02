@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import Button from "../../elements/Button";
+import Button from "../Button";
 import { useHistory } from "react-router-dom";
 import {
   registerFormCompleted,

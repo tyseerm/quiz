@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 
 import Question from "./Question";
 import ProgressBar from "../ProgressBar";
-import Button from "../../elements/Button";
+import Button from "../Button";
 import { REESULTS_PAGE, REGISTER_PAGE } from "../../routes";
 
 const Questions = ({registered, questions, attempts, actions }) => {
