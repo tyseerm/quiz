@@ -38,6 +38,7 @@ const RegisterForm = ({
             name="name"
             onChange={registerFormUpdated}
             value={name}
+            required
           />
         </div>
       </div>
@@ -54,6 +55,7 @@ const RegisterForm = ({
             name="email"
             onChange={registerFormUpdated}
             value={email}
+            required
           />
         </div>
       </div>

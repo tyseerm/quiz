@@ -21,7 +21,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "server": "babel-node src/server/server"
+    "server": "babel-node src/server/server",
+    "db-init": "babel-node src/server/db/initialize-db"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -51,6 +52,8 @@
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
     "express": "^4.17.1",
+    "md5": "^2.2.1",
+    "mongodb": "^3.5.4",
     "react-test-renderer": "^16.13.0",
     "redux-devtools-extension": "^2.13.8"
   }
