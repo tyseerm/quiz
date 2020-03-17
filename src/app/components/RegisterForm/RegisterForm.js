@@ -7,7 +7,7 @@ import {
   registerFormUpdated
 } from "../../state/registerForm/RegisterFormActions";
 import { loadQuestions } from "../../state/questions/QuestionActions";
-import { QUIZ_PAGE } from "../../routes";
+import { QUIZ_PAGE } from "../../pages";
 const RegisterForm = ({
   name,
   email,

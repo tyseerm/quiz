@@ -1,16 +1,15 @@
 import React from "react";
-import {Redirect} from 'react-router';
-import { QUIZ_PAGE } from "../routes";
 
 const Notification = ({ show, type, message, details }) => {
   if (show) {
     return (
       <div className={"alert alert-" + type} role="alert">
-        <strong>{message}</strong> {details}
+        <h4 className="alert-heading">{message}</h4>
+        {details}
       </div>
     );
   } else {
-       return <Redirect to={QUIZ_PAGE} />
+       return null
       
   }
 };

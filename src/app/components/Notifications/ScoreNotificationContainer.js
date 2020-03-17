@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import Notification from "./Notification";
+import ScoreNotification from "./ScoreNotification";
 
 const mapStateToProps = ({ results }) => {
   const { submited, score } = results;
@@ -31,4 +31,4 @@ const mapStateToProps = ({ results }) => {
   };
 };
 
-export default connect(mapStateToProps)(Notification);
+export default connect(mapStateToProps)(ScoreNotification);
