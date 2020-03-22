@@ -14,8 +14,8 @@ import {
   closeQuizForm,
   addQuizSuccess
 } from "./DashboardActions";
-import * as routes from "../../api/routes";
-import {makeRequest} from '../../api'
+import * as routes from "../../../../api/routes";
+import {makeRequest} from '../../../../api'
 
 
 const optionsForLoadQuizzes = (token, userId) => ({
@@ -130,7 +130,6 @@ export function* addQuizSaga() {
       const addQuizOptions = optionsForAddQuiz(token, quiz);
 
       const { result } = yield makeRequest(addQuizOptions);
-      console.log('add quiz saga, result: ', result);
       
       yield put(addQuizSuccess());
       yield put(closeQuizForm());
@@ -145,17 +144,12 @@ export function* sendInvitationSaga() {
   while (true) {
     try {
       const action = yield take(SEND_INVITATION);
-      console.log('action.payload: ', action.payload);
       
       const { token, email, id } = action.payload;
-      console.log('token: ', token);
-      console.log('email: ', email);
-      console.log('id: ', id);
       
       const sendInviteOptions = optionsForSendInvite(token, email, id);
 
       const { result } = yield makeRequest(sendInviteOptions);
-      console.log('sendInvitationSaga result: ', result);
       
 
     } catch (error) {

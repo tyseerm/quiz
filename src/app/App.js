@@ -1,13 +1,13 @@
 import React from "react";
-import Header from "./components/Header";
+import Header from "./commons/components/Header";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import * as pages from './pages';
 
-import QuizContainer from "./components/Questions/QuizContainer";
-import RegisterForm from "./components/RegisterForm/RegisterForm";
-import ScoreNotification from "./components/Notifications/ScoreNotification";
-import LoginForm from "./components/LoginForm/LoginForm";
-import Dashboard from "./components/Dashboard/Dashboard";
+import QuizContainer from "./modules/quiz_taker/components/Questions/QuizContainer";
+import RegisterForm from "./modules/quiz_taker/components/RegisterForm/RegisterForm";
+import ScoreNotification from "./modules/quiz_taker/components/ScoreNotification";
+import LoginForm from "./modules/quiz_maker/components/LoginForm/LoginForm";
+import Dashboard from "./modules/quiz_maker/components/Dashboard/Dashboard";
 function App() {
   return (
     <div className="container">

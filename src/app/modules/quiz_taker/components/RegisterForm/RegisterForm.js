@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import Button from "../Button";
+import Button from "../../../../commons/components/Button";
 //import { useHistory } from "react-router-dom";
 import {
   registerFormCompleted,
@@ -15,7 +15,6 @@ const RegisterForm = ({
   registerFormCompleted,
   invitationId
 }) => {
-  console.log('RegisterForm.invitationId', invitationId);
   
  // let history = useHistory();
   return (
@@ -86,7 +85,6 @@ const mapDispatchToProps = dispatch => ({
     dispatch(registerFormUpdated(payload));
   },
   registerFormCompleted(event, invitationId) {
-    console.log('registerFormCompleted.invitationId:', invitationId);
     
     event.preventDefault();
     dispatch(registerFormCompleted());

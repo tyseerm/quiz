@@ -4,15 +4,14 @@ import {useParams} from 'react-router';
 
 import Question from "./Question";
 import ProgressBar from "../ProgressBar";
-import Button from "../Button";
+import Button from "../../../../commons/components/Button";
 //import { REESULTS_PAGE } from "../../pages";
 import RegisterForm from "../RegisterForm/RegisterForm";
-import ScoreNotificationContainer from "../Notifications/ScoreNotificationContainer";
-import InvitationNotValidNotification from "../Notifications/InvitationNotValidNotification";
+import ScoreNotificationContainer from "../ScoreNotificationContainer";
+import InvitationNotValidNotification from "../InvitationNotValidNotification";
 
 const Questions = ({registered, quiz, attempts, actions, results }) => {
   const {invitationId}  = useParams()
-  console.log('invitationId: ', invitationId);
   
   const onAttempt = (questionId, choiceId) => {
     actions.attemptQuestion({ [questionId]: choiceId });

@@ -1,13 +1,13 @@
 import React from "react";
 import { connect } from "react-redux";
-import Button from "../Button";
+import Button from "../../../../commons/components/Button";
 import {
   loginFormCompleted,
   loginFormUpdated
-} from "../../../modules/quiz_maker/state/loginForm/LoginFormActions";
-import LoginFailedNotification from "../../../modules/quiz_maker/components/LoginFailedNotification";
+} from "../../state/loginForm/LoginFormActions";
+import LoginFailedNotification from "../LoginFailedNotification";
 import { Redirect } from "react-router";
-import { DASHBOARD_PAGE } from "../../../pages";
+import { DASHBOARD_PAGE } from "../../../../pages";
 const RegisterForm = ({
   password,
   username,

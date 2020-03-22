@@ -49,7 +49,6 @@ export const dashboard = (
         }
       };
     case CHANGE_QUESTION:
-      console.log("CHANGE_QUESTION: ", payload);
 
       const selectedQuiz = state.selectedQuiz;
       const selectedQuizQuestions = selectedQuiz.questions;
@@ -68,7 +67,6 @@ export const dashboard = (
           }
           if (addChoice) {
             const newChoice = { value: "New Choice", id: uuidv4() };
-            console.log("newChoice: ", newChoice);
 
             return { ...question, choices: [...question.choices, newChoice] };
           }

@@ -43,7 +43,6 @@ const mapDispatchToProps = dispatch => ({
     dispatch(changeQuiz(payload));
   },
   handleQuestionChange(event, payload) {
-    console.log('handleQuestionChange', event.target);
     
     const {value} = event.target
     dispatch(changeQuestion({value, questionPayload: payload}));

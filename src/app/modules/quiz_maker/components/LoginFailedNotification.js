@@ -1,5 +1,5 @@
 import React from "react";
-import  Notification from "./Notification";
+import  Notification from "../../../commons/components/Notifications/Notification";
 const LoginFailedNotification = ({show}) => (
     <Notification
           show={show}

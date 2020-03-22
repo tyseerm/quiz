@@ -1,7 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
 
-import Notification from "../../components/Notification";
+import Notification from "../../commons/components/Notifications/Notification";
 
 describe("NotificationComponent", () => {
   describe("When show  notification", () => {
@@ -47,9 +47,9 @@ describe("NotificationComponent", () => {
         expect(result.exists()).toBe(false);
     })
 
-    it('it redirects to different page', () => {
+    it('it returns null', () => {
         const result = wrapper.text();
-        expect(result).toBe('<Redirect />');
+        expect(result).toBe('');
     })
 
 

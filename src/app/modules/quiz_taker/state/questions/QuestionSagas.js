@@ -1,6 +1,6 @@
 import {put, take } from "redux-saga/effects";
-import * as routes from "../../api/routes";
-import {makeRequest} from "../../api";
+import * as routes from "../../../../api/routes";
+import {makeRequest} from "../../../../api";
 import {
   storeQuestions,
   loadQuestionsFailed,
@@ -28,12 +28,9 @@ export function* loadQuestionsSaga() {
   while (true) {
     try {
       const {payload} = yield take(LOAD_QUESTIONS, loadQuestionsSaga);
-      console.log("loadQuestionsSaga: ", payload);
 
       const getQuizConfig = optionsForGetQuiz(payload.invitationId);
-      console.log("loadQuestionsSaga.getQuizConfig: ", getQuizConfig);
       const data = yield makeRequest(getQuizConfig);
-      console.log("loadQuestionsSaga.response: ", data);
 
       yield put(storeQuestions(data));
     } catch (error) {
@@ -47,14 +44,11 @@ export function* getScoreSaga() {
   while (true) {
     try {
       const {payload} = yield take(SUBMIT_QUIZ);
-      console.log('getScoreSaga.payload: ', payload);
       
       const {attempts, quizId} = payload
       const getScoreConfig = optionsForGetScore(attempts, quizId)
-      console.log('getScoreConfig: ', getScoreConfig);
       
       const score = yield makeRequest(getScoreConfig)
-      console.log('getScoreSaga.response: ', score);
       
       yield put(storeScore(score));
     } catch (error) {

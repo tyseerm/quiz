@@ -60,6 +60,7 @@
     "md5": "^2.2.1",
     "mongodb": "^3.5.4",
     "react-test-renderer": "^16.13.0",
-    "redux-devtools-extension": "^2.13.8"
+    "redux-devtools-extension": "^2.13.8",
+    "supertest": "^4.0.2"
   }
 }

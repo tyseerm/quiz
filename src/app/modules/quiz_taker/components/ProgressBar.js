@@ -1,6 +1,6 @@
 import React, {useContext} from "react";
 import {connect} from 'react-redux';
-import { ConfigContext } from './../config';
+import { ConfigContext } from '../../../config';
 
 
 
