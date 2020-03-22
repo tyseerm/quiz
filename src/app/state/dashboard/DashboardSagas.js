@@ -1,11 +1,11 @@
 import { put, take } from "redux-saga/effects";
-import axios from "axios";
 
 import {
   LOAD_QUIZZES,
   DELETE_QUIZ,
   UPDATE_QUIZ,
-  ADD_QUIZ
+  ADD_QUIZ,
+  SEND_INVITATION
 } from "./DashboardActionTypes";
 import {
   storeQuizzes,
@@ -15,17 +15,8 @@ import {
   addQuizSuccess
 } from "./DashboardActions";
 import * as routes from "../../api/routes";
+import {makeRequest} from '../../api'
 
-const makeRequest = async requestOptions => {
-  try {
-    const response = await axios(requestOptions);
-    return response.data;
-  } catch (err) {
-    console.log(err);
-
-    throw err;
-  }
-};
 
 const optionsForLoadQuizzes = (token, userId) => ({
   method: "GET",
@@ -62,6 +53,18 @@ const optionsForAddQuiz = (token, quiz) => ({
   },
   data: {
     quiz
+  }
+});
+
+const optionsForSendInvite= (token, email, quizId) => ({
+  method: "POST",
+  url: routes.ADD_QUIZ_INVITATION(quizId),
+  headers: {
+    Authorization: `Bearer ${token}`
+  },
+  data: {
+    email,
+    quizId
   }
 });
 
@@ -131,6 +134,30 @@ export function* addQuizSaga() {
       
       yield put(addQuizSuccess());
       yield put(closeQuizForm());
+    } catch (error) {
+      console.log("couldn't update the quiz because of: ", error);
+    }
+  }
+}
+
+
+export function* sendInvitationSaga() {
+  while (true) {
+    try {
+      const action = yield take(SEND_INVITATION);
+      console.log('action.payload: ', action.payload);
+      
+      const { token, email, id } = action.payload;
+      console.log('token: ', token);
+      console.log('email: ', email);
+      console.log('id: ', id);
+      
+      const sendInviteOptions = optionsForSendInvite(token, email, id);
+
+      const { result } = yield makeRequest(sendInviteOptions);
+      console.log('sendInvitationSaga result: ', result);
+      
+
     } catch (error) {
       console.log("couldn't update the quiz because of: ", error);
     }

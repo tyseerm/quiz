@@ -13,8 +13,8 @@ const RegisterForm = ({
   username,
   loginFormUpdated,
   loginFormCompleted,
-  loginSuccess = false,
-  loginFailed = false
+  loginSuccess,
+  loginFailed
 }) => {
   if (loginSuccess) {
     return <Redirect to={DASHBOARD_PAGE} />;

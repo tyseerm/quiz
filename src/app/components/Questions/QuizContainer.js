@@ -4,10 +4,11 @@ import {bindActionCreators} from 'redux';
 import Questions from './Questions'
 import {attemptQuestion, submitQuiz} from '../../state/questions/QuestionActions';
 
-const mapStateToProps = ({questions, attempts, registerForm}) => {
+const mapStateToProps = ({quiz, attempts, registerForm, results}) => {
     return{
-        questions,
+        quiz,
         attempts,
+        results,
         registered: registerForm.registered
     }
 }

@@ -1,7 +1,7 @@
 import React from "react";
-import { Link, useHistory } from "react-router-dom";
+import {useHistory } from "react-router-dom";
 import { Alert } from "react-bootstrap";
-import { LOGIN_PAGE } from "../pages";
+import { LOGIN_PAGE } from "../../pages";
 export default () => {
   const history = useHistory();
 return (

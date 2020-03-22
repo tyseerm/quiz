@@ -4,26 +4,28 @@ import { all } from "redux-saga/effects";
 import { composeWithDevTools } from "redux-devtools-extension";
 
 import rootReducer from "./reducers";
-import { watchQuestionsSaga, getScoreSaga } from "./questions/QuestionSagas";
+import { loadQuestionsSaga, getScoreSaga } from "./questions/QuestionSagas";
 import { loginSaga } from "./loginForm/LoginSagas";
 import {
   loadQuizzesSaga,
   deleteQuizSaga,
   updateQuizSaga,
-  addQuizSaga
+  addQuizSaga,
+  sendInvitationSaga
 } from "./dashboard/DashboardSagas";
 
 const sagaMiddleware = createSagaMiddleware();
 
 function* rootSaga() {
   yield all([
-    watchQuestionsSaga(),
+    loadQuestionsSaga(),
     getScoreSaga(),
     loginSaga(),
     loadQuizzesSaga(),
     deleteQuizSaga(),
     updateQuizSaga(),
-    addQuizSaga()
+    addQuizSaga(),
+    sendInvitationSaga()
   ]);
 }
 

@@ -11,7 +11,9 @@ import {
   CHANGE_QUESTION,
   ADD_QUESTION,
   ADD_QUIZ,
-  ADD_QUIZ_SUCCESS
+  ADD_QUIZ_SUCCESS,
+  SEND_INVITATION,
+  HIDE_INVITE_MODAL
 } from "./DashboardActionTypes";
 
 export const loadQuizzes = payload => ({
@@ -38,9 +40,22 @@ export const openQuizForm = payload => ({
   payload
 });
 
+
+
 export const closeQuizForm = () => ({
   type: CLOSE_QUIZ_FORM
 });
+
+export const sendInvite = payload =>({
+  type: SEND_INVITATION,
+  payload
+})
+
+
+export const hideInviteModal = payload =>({
+  type: HIDE_INVITE_MODAL,
+  payload
+})
 
 
 export const changeQuiz = payload => ({

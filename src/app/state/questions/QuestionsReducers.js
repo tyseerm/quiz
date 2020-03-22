@@ -2,7 +2,8 @@ import {
   ATTEMPT_QUESTION,
   STORE_QUESTIONS,
   SUBMIT_QUIZ,
-  STORE_SCORE
+  STORE_SCORE,
+  LOAD_QUESTIONS_FAILED
 } from "./QuestionActionTypes";
 
 export const attempts = (attempts = {}, { type, payload }) => {
@@ -15,13 +16,14 @@ export const attempts = (attempts = {}, { type, payload }) => {
   }
 };
 
-export const questions = (questions = [], { type, payload }) => {
+export const quiz = (quiz = {questions: [], id: null}, { type, payload }) => {
   switch (type) {
     case STORE_QUESTIONS:
-      return [...payload];
-
+      return {...payload};
+    case LOAD_QUESTIONS_FAILED:
+      return quiz
     default:
-      return questions;
+      return quiz;
   }
 };
 
@@ -32,7 +34,7 @@ export const results = (results = {}, { type, payload }) => {
     case STORE_SCORE:
       
       return { ...results, score: payload };
-
+    
     default:
       return results;
   }

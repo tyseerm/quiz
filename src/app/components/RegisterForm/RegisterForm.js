@@ -1,25 +1,28 @@
 import React from "react";
 import { connect } from "react-redux";
 import Button from "../Button";
-import { useHistory } from "react-router-dom";
+//import { useHistory } from "react-router-dom";
 import {
   registerFormCompleted,
   registerFormUpdated
 } from "../../state/registerForm/RegisterFormActions";
 import { loadQuestions } from "../../state/questions/QuestionActions";
-import { QUIZ_PAGE } from "../../pages";
+//import { QUIZ_PAGE } from "../../pages";
 const RegisterForm = ({
   name,
   email,
   registerFormUpdated,
-  registerFormCompleted
+  registerFormCompleted,
+  invitationId
 }) => {
-  let history = useHistory();
+  console.log('RegisterForm.invitationId', invitationId);
+  
+ // let history = useHistory();
   return (
     <form
       onSubmit={e => {
-        registerFormCompleted(e);
-        history.push(QUIZ_PAGE);
+        registerFormCompleted(e, invitationId);
+        //history.push(QUIZ_PAGE);
       }}
     >
       <div className="m-3 p-3 d-flex justify-content-center">
@@ -82,10 +85,12 @@ const mapDispatchToProps = dispatch => ({
     const payload = { [target.name]: target.value };
     dispatch(registerFormUpdated(payload));
   },
-  registerFormCompleted(event) {
+  registerFormCompleted(event, invitationId) {
+    console.log('registerFormCompleted.invitationId:', invitationId);
+    
     event.preventDefault();
     dispatch(registerFormCompleted());
-    dispatch(loadQuestions());
+    dispatch(loadQuestions({invitationId}));
   }
 });
 

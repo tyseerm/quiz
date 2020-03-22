@@ -4,22 +4,23 @@ import { connect } from "react-redux";
 
 import {
   loadQuizzes,
-  deleteQuiz, openQuizForm, closeQuizForm
+  deleteQuiz, openQuizForm,  sendInvite
 } from "../../state/dashboard/DashboardActions";
 import QuizCard from "./Quizzes/QuizCard";
-import LoginLink from "../LoginLink";
+import LoginLink from "../LoginForm/LoginLink";
 import QuizFormModal from "./Quizzes/QuizFormModal";
 import { Button } from "react-bootstrap";
 
 
 const Dashboard = ({
-  token = null,
+  token,
   userId,
   quizzes,
   loaded,
   loadQuizzes,
   onDeleteQuiz,
   onEditQuiz,
+  onInvite
 
 }) => {
   useEffect(() => {
@@ -47,10 +48,12 @@ const Dashboard = ({
         <Button onClick={() => onEditQuiz(newQuiz)}>Add Quiz</Button>
         {quizzes.map(quiz => (
           <QuizCard
+            token= {token}
             key={quiz.id}
             quiz={quiz}
             onDelete={() => onDeleteQuiz(token, userId, quiz.id)}
             onEditQuiz={() => onEditQuiz(quiz)}
+            onInvite = {onInvite}
           />
         ))}
         <QuizFormModal />
@@ -81,8 +84,8 @@ const mapDispatchToProps = dispatch => ({
   onEditQuiz(quiz) {
     dispatch(openQuizForm({ selectedQuiz: quiz}));
   },
-  onEditQuizClose() {
-    dispatch(closeQuizForm());
+  onInvite(token, email, id) {
+    dispatch(sendInvite({token, email, id}));
   }
 });
 

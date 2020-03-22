@@ -20,7 +20,7 @@ const ProgressBar = ({ percentage}) => {
 
 const mapStateToProps = state => {
   const attemptsCount = Object.keys(state.attempts).length;
-  const questionsCount = state.questions.length;
+  const questionsCount = state.quiz.questions.length;
   return { percentage: Math.round((attemptsCount / questionsCount) * 100)};
 };
 

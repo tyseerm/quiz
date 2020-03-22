@@ -8,8 +8,9 @@ import {
   UPDATE_QUIZ_SUCCESS,
   CHANGE_QUESTION,
   ADD_QUESTION,
-  ADD_QUIZ,
-  ADD_QUIZ_SUCCESS
+  ADD_QUIZ_SUCCESS,
+  HIDE_INVITE_MODAL,
+  SEND_INVITATION
 } from "./DashboardActionTypes";
 
 export const dashboard = (
@@ -22,17 +23,23 @@ export const dashboard = (
     case DELETE_QUIZ_SUCCESS:
       return { ...state, loaded: false };
     case OPEN_QUIZ_FORM:
-      console.log('should be here?');
-      
       return { ...state, ...payload, showModal: true };
     case ADD_QUIZ_SUCCESS:
       return { ...state, loaded: false };
     case CLOSE_QUIZ_FORM:
       return { ...state, showModal: false };
+      case SEND_INVITATION:
+        return { ...state, ...payload, sendInvite: true };
+    case HIDE_INVITE_MODAL:
+      return { ...state, showInviteModal: false };
     case CHANGE_QUIZ:
       return { ...state, selectedQuiz: { ...state.selectedQuiz, ...payload } };
     case ADD_QUESTION:
-      const newQuestion = { id: uuidv4(), title: "New Question", choices: [1,2,3].map(n=>({value:`Choice ${n}`, id:uuidv4()}))};
+      const newQuestion = {
+        id: uuidv4(),
+        title: "New Question",
+        choices: [1, 2, 3].map(n => ({ value: `Choice ${n}`, id: uuidv4() }))
+      };
 
       return {
         ...state,
@@ -47,10 +54,16 @@ export const dashboard = (
       const selectedQuiz = state.selectedQuiz;
       const selectedQuizQuestions = selectedQuiz.questions;
       const { questionPayload, value } = payload;
-      const { questionId, choiceId, addChoice, deleteChoice, answer } = questionPayload;
+      const {
+        questionId,
+        choiceId,
+        addChoice,
+        deleteChoice,
+        answer
+      } = questionPayload;
       const updatedQuestions = selectedQuizQuestions.map(question => {
         if (question.id === questionId) {
-          if(answer){
+          if (answer) {
             return { ...question, answer };
           }
           if (addChoice) {

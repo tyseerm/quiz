@@ -1,6 +1,6 @@
-import { call, put, takeLatest, take } from "redux-saga/effects";
-import axios from "axios";
-
+import {put, take } from "redux-saga/effects";
+import * as routes from "../../api/routes";
+import {makeRequest} from "../../api";
 import {
   storeQuestions,
   loadQuestionsFailed,
@@ -9,33 +9,57 @@ import {
 } from "./QuestionActions";
 import { LOAD_QUESTIONS, SUBMIT_QUIZ } from "./QuestionActionTypes";
 
-const BASE_URL = "http://localhost:9999";
+const optionsForGetQuiz = invitationId => ({
+  method: "GET",
+  url: routes.QUIZ_BY_INVITATION(invitationId)
+});
 
-function* loadQuestionsSaga() {
-  try {
-    const { data } = yield call(axios.get, `${BASE_URL}/questions`);
-
-    yield put(storeQuestions(data));
-  } catch (error) {
-    console.error(error);
-    yield put(loadQuestionsFailed(error));
+const optionsForGetScore = (attempts, quizId) => ({
+  method: "POST",
+  url: routes.GET_SCORE,
+  headers: {},
+  data: {
+    attempts,
+    quizId
   }
-}
+});
 
-export function* watchQuestionsSaga() {
-  yield takeLatest(LOAD_QUESTIONS, loadQuestionsSaga);
+export function* loadQuestionsSaga() {
+  while (true) {
+    try {
+      const {payload} = yield take(LOAD_QUESTIONS, loadQuestionsSaga);
+      console.log("loadQuestionsSaga: ", payload);
+
+      const getQuizConfig = optionsForGetQuiz(payload.invitationId);
+      console.log("loadQuestionsSaga.getQuizConfig: ", getQuizConfig);
+      const data = yield makeRequest(getQuizConfig);
+      console.log("loadQuestionsSaga.response: ", data);
+
+      yield put(storeQuestions(data));
+    } catch (error) {
+      console.error(error);
+      yield put(loadQuestionsFailed(error));
+    }
+  }
 }
 
 export function* getScoreSaga() {
   while (true) {
     try {
-      const attempts = yield take(SUBMIT_QUIZ);
-      const { data } = yield call(axios.post, `${BASE_URL}/score`, {
-        attempts: attempts
-      });
-
-      yield put(storeScore(data));
+      const {payload} = yield take(SUBMIT_QUIZ);
+      console.log('getScoreSaga.payload: ', payload);
+      
+      const {attempts, quizId} = payload
+      const getScoreConfig = optionsForGetScore(attempts, quizId)
+      console.log('getScoreConfig: ', getScoreConfig);
+      
+      const score = yield makeRequest(getScoreConfig)
+      console.log('getScoreSaga.response: ', score);
+      
+      yield put(storeScore(score));
     } catch (error) {
+      console.log('getScoreSaga.error: ', error);
+      
       yield put(submitQuizFailed(error));
     }
   }

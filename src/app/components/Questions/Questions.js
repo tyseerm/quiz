@@ -1,40 +1,51 @@
 import React from "react";
-import {Redirect} from 'react-router';
-import { useHistory } from "react-router-dom";
+import {useParams} from 'react-router';
+//import { useHistory } from "react-router-dom";
 
 import Question from "./Question";
 import ProgressBar from "../ProgressBar";
 import Button from "../Button";
-import { REESULTS_PAGE, REGISTER_PAGE } from "../../pages";
+//import { REESULTS_PAGE } from "../../pages";
+import RegisterForm from "../RegisterForm/RegisterForm";
+import ScoreNotificationContainer from "../Notifications/ScoreNotificationContainer";
+import InvitationNotValidNotification from "../Notifications/InvitationNotValidNotification";
 
-const Questions = ({registered, questions, attempts, actions }) => {
+const Questions = ({registered, quiz, attempts, actions, results }) => {
+  const {invitationId}  = useParams()
+  console.log('invitationId: ', invitationId);
+  
   const onAttempt = (questionId, choiceId) => {
     actions.attemptQuestion({ [questionId]: choiceId });
   };
-  let history = useHistory();
   const onSubmit = () => {
-    actions.submitQuiz({...attempts});
-    history.push(REESULTS_PAGE);
+    actions.submitQuiz({attempts: {...attempts}, quizId: quiz.id});
+  //  history.push(REESULTS_PAGE);
   };
 
   if(!registered){
-    return <Redirect to={REGISTER_PAGE} />
-  }
+    return <RegisterForm invitationId={invitationId} />
+  }else if(results.submited && results.score){
+    return <ScoreNotificationContainer />
+  }else if(!quiz.id){
+    return <InvitationNotValidNotification show='true' />
+  }else{
 
   return (
     <>
       <ProgressBar />
-      {questions.map(question => (
+      {quiz.questions.map(question => (
         <Question
           question={question}
           attempted={attempts[question.id] ? attempts[question.id] : ""}
           onAttempt={onAttempt}
           key={question.id}
+          
         />
       ))}
       <Button value="Submit" onClick={onSubmit} />
     </>
   );
+      }
 };
 
 export default Questions;

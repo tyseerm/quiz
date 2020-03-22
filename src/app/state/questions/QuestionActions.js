@@ -9,7 +9,7 @@ import {
 } from "./QuestionActionTypes";
 
 //Load & store questions
-export const loadQuestions = () => ({ type: LOAD_QUESTIONS });
+export const loadQuestions = payload => ({ type: LOAD_QUESTIONS, payload });
 export const loadQuestionsFailed = () => ({ type: LOAD_QUESTIONS_FAILED });
 export const storeQuestions = payload => ({ type: STORE_QUESTIONS, payload });
 export const attemptQuestion = payload => ({ type: ATTEMPT_QUESTION, payload });
