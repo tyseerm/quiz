@@ -4,7 +4,10 @@ import { all } from "redux-saga/effects";
 import { composeWithDevTools } from "redux-devtools-extension";
 
 import rootReducer from "./reducers";
-import { loadQuestionsSaga, getScoreSaga } from '../modules/quiz_taker/state/questions/QuestionSagas';
+import {
+  loadQuestionsSaga,
+  getScoreSaga
+} from "../modules/quiz_taker/state/questions/QuestionSagas";
 import { loginSaga } from "../modules/quiz_maker/state/loginForm/LoginSagas";
 import {
   loadQuizzesSaga,
@@ -29,9 +32,12 @@ function* rootSaga() {
   ]);
 }
 
+
 const store = createStore(
   rootReducer,
-  composeWithDevTools(applyMiddleware(sagaMiddleware))
+  process.env.NODE_ENV === "production"
+    ? applyMiddleware(sagaMiddleware)
+    : composeWithDevTools(applyMiddleware(sagaMiddleware))
 );
 
 sagaMiddleware.run(rootSaga);
