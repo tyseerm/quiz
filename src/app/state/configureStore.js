@@ -1,6 +1,7 @@
 import { createStore, applyMiddleware } from "redux";
 import createSagaMiddleware from "redux-saga";
 import { all } from "redux-saga/effects";
+import { composeWithDevTools } from "redux-devtools-extension";
 
 import rootReducer from "./reducers";
 import {
@@ -33,7 +34,7 @@ function* rootSaga() {
 
 const store = createStore(
   rootReducer,
-  applyMiddleware(sagaMiddleware)
+  composeWithDevTools(applyMiddleware(sagaMiddleware))
 );
 
 sagaMiddleware.run(rootSaga);

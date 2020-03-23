@@ -22,7 +22,7 @@ const Questions = ({registered, quiz, attempts, actions, results, invitationId }
   };
   if(!registered){
     return <RegisterForm invitationId={invitationId} />
-  }else if(results.submited && results.score){
+  }else if(results.submited){
     return <ScoreNotificationContainer />
   }else if(!quiz.id){
     return <InvitationNotValidNotification show='true' />
