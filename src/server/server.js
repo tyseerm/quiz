@@ -6,6 +6,7 @@ import md5 from "md5";
 import { generateJWT, getUserObject } from "./jwt";
 import { auth } from "./middleware/auth";
 import {v4 as uuidv4} from 'uuid'
+import sendEmail, {mailOptionsCreator} from './emailServer'
 require("dotenv").config();
 
 const port = 9999;
@@ -77,9 +78,14 @@ app.post("/dashboard/:quizId/invitations", auth, async (req, res) => {
   const quizId = req.body.quizId;
   const email = req.body.email;
   const db = await connectDB();
+  const id = uuidv4();
   const result = await db
     .collection("invitations")
-    .insertOne({ id: uuidv4(), email, quiz: quizId,});
+    .insertOne({ id, email, quiz: quizId,});
+  
+    const emailOptions = mailOptionsCreator(email, `${process.env.APP_HOST}/quiz/${id}`)
+    sendEmail(emailOptions)
+
   res.status(200).send(result);
 });
 
