@@ -3,15 +3,14 @@ import axios from "axios";
 
 import { loginSuccess, loginFailed, storeSession } from "./LoginFormActions";
 import { LOGIN_FORM_COMPLETED } from "./LoginFormActionTypes";
-
-const BASE_URL = "http://localhost:9999";
+import { LOGIN } from "../../../../api/routes";
 
 export function* loginSaga(){
     while (true) {
         try {
           const {payload} = yield take(LOGIN_FORM_COMPLETED);
           
-          const response = yield call(axios.post, `${BASE_URL}/users/signin`, {
+          const response = yield call(axios.post, LOGIN, {
             username: payload.username,
             password: payload.password
           });

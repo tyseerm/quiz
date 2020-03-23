@@ -7,14 +7,29 @@ import { generateJWT, getUserObject } from "./jwt";
 import { auth } from "./middleware/auth";
 import {v4 as uuidv4} from 'uuid'
 import sendEmail, {mailOptionsCreator} from './emailServer'
+import path from 'path'
 require("dotenv").config();
 
-const port = 9999;
+
+const port = process.env.PORT || 9999;
 
 const app = express();
+
+
+
+
 app.listen(port, console.log(`servers listening on port: ${port}`));
 
 app.use(cors(), bodyParser.urlencoded({ extended: true }), bodyParser.json());
+
+if(process.env.NODE_ENV === 'production'){
+  app.use(express.static(path.resolve(__dirname,'../../build')))
+  app.get('/*', (req,res)=> {
+    res.sendFile(path.resolve('index.html'))
+  })
+}
+
+
 
 app.post("/users/signin", async (req, res) => {
   const db = await connectDB();
