@@ -1,25 +1,13 @@
 import React from "react";
-import { connect } from "react-redux";
 import Button from "../../../../commons/components/Button";
-import {
-  loginFormCompleted,
-  loginFormUpdated
-} from "../../state/loginForm/LoginFormActions";
 import LoginFailedNotification from "../LoginFailedNotification";
-import { Redirect } from "react-router";
-import { DASHBOARD_PAGE } from "../../../../pages";
-const RegisterForm = ({
+export const LoginForm = ({
   password,
   username,
   loginFormUpdated,
   loginFormCompleted,
-  loginSuccess,
   loginFailed
-}) => {
-  if (loginSuccess) {
-    return <Redirect to={DASHBOARD_PAGE} />;
-  } else {
-    return (
+}) =>  (
       <form
         onSubmit={e => {
           loginFormCompleted(e);
@@ -73,35 +61,3 @@ const RegisterForm = ({
         </div>
       </form>
     );
-  }
-};
-
-const mapStateToProps = ({ loginForm }) => {
-  const { username, password, loginSuccess, loginFailed } = loginForm;
-  return {
-    username,
-    password,
-    loginSuccess,
-    loginFailed
-  };
-};
-
-const mapDispatchToProps = dispatch => ({
-  loginFormUpdated(event) {
-    const target = event.target;
-    const payload = { [target.name]: target.value };
-    dispatch(loginFormUpdated(payload));
-  },
-  loginFormCompleted(e) {
-    e.preventDefault();
-
-    dispatch(
-      loginFormCompleted({
-        username: e.target["username"].value,
-        password: e.target["password"].value
-      })
-    );
-  }
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(RegisterForm);

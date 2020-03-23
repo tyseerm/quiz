@@ -1,5 +1,5 @@
 import React from "react";
-import {useParams} from 'react-router';
+
 //import { useHistory } from "react-router-dom";
 
 import Question from "./Question";
@@ -10,8 +10,8 @@ import RegisterForm from "../RegisterForm/RegisterForm";
 import ScoreNotificationContainer from "../ScoreNotificationContainer";
 import InvitationNotValidNotification from "../InvitationNotValidNotification";
 
-const Questions = ({registered, quiz, attempts, actions, results }) => {
-  const {invitationId}  = useParams()
+const Questions = ({registered, quiz, attempts, actions, results, invitationId }) => {
+  
   
   const onAttempt = (questionId, choiceId) => {
     actions.attemptQuestion({ [questionId]: choiceId });
@@ -20,7 +20,6 @@ const Questions = ({registered, quiz, attempts, actions, results }) => {
     actions.submitQuiz({attempts: {...attempts}, quizId: quiz.id});
   //  history.push(REESULTS_PAGE);
   };
-
   if(!registered){
     return <RegisterForm invitationId={invitationId} />
   }else if(results.submited && results.score){

@@ -4,15 +4,15 @@ import { all } from "redux-saga/effects";
 import { composeWithDevTools } from "redux-devtools-extension";
 
 import rootReducer from "./reducers";
-import { loadQuestionsSaga, getScoreSaga } from "./questions/QuestionSagas";
-import { loginSaga } from "./loginForm/LoginSagas";
+import { loadQuestionsSaga, getScoreSaga } from '../modules/quiz_taker/state/questions/QuestionSagas';
+import { loginSaga } from "../modules/quiz_maker/state/loginForm/LoginSagas";
 import {
   loadQuizzesSaga,
   deleteQuizSaga,
   updateQuizSaga,
   addQuizSaga,
   sendInvitationSaga
-} from "./dashboard/DashboardSagas";
+} from "../modules/quiz_maker/state/dashboard/DashboardSagas";
 
 const sagaMiddleware = createSagaMiddleware();
 

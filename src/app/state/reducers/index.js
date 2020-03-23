@@ -1,8 +1,8 @@
 import {combineReducers} from 'redux';
-import {attempts, quiz, results } from '../questions/QuestionsReducers';
-import { registerForm } from '../registerForm/RegisterFormReducers';
-import {loginForm, session} from '../loginForm/LoginFormReducers';
-import {dashboard} from '../dashboard/DashboardReducers'
+import {attempts, quiz, results } from '../../modules/quiz_taker/state/questions/QuestionsReducers';
+import { registerForm } from '../../modules/quiz_taker/state/registerForm/RegisterFormReducers';
+import {loginForm, session} from '../../modules/quiz_maker/state/loginForm/LoginFormReducers';
+import {dashboard} from '../../modules/quiz_maker/state/dashboard/DashboardReducers'
 
 const rootReducer = combineReducers({
     attempts,

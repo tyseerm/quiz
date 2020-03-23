@@ -7,8 +7,9 @@ import {
   registerFormUpdated
 } from "../../state/registerForm/RegisterFormActions";
 import { loadQuestions } from "../../state/questions/QuestionActions";
+import { REGISTER_MESSAGE } from "../../../../config/messages";
 //import { QUIZ_PAGE } from "../../pages";
-const RegisterForm = ({
+export const RegisterForm = ({
   name,
   email,
   registerFormUpdated,
@@ -25,7 +26,7 @@ const RegisterForm = ({
       }}
     >
       <div className="m-3 p-3 d-flex justify-content-center">
-        <h2>Please register to start your quiz</h2>
+    <h2>{REGISTER_MESSAGE}</h2>
       </div>
       <div className="form-group row">
         <label htmlFor="inputName3" className="col-sm-2 col-form-label">
