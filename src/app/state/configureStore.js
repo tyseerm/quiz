@@ -32,12 +32,9 @@ function* rootSaga() {
   ]);
 }
 
-
 const store = createStore(
   rootReducer,
-  process.env.NODE_ENV === "production"
-    ? applyMiddleware(sagaMiddleware)
-    : composeWithDevTools(applyMiddleware(sagaMiddleware))
+  composeWithDevTools(applyMiddleware(sagaMiddleware))
 );
 
 sagaMiddleware.run(rootSaga);
