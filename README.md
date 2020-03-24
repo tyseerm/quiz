@@ -7,6 +7,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - The app has two modules, quiz maker and quiz taker
 - Quiz maker is a user who can create and manage quizzes, and send invitations to quiz takers
 - Quiz taker is a user who takes the quiz, as per the invitation recieved from the quiz maker
+- To create quizzes and manage quizzes you should login first (I will send username & password in one-one message)
+- To test taking a quiz use [this link](https://quiz-reactapp.herokuapp.com/app/quiz/775df227-5ec9-4a2a-93eb-ffa8e4029f16)
 
 ## Context Daigram
 
@@ -17,5 +19,5 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - You should have mongodb installed
 - Clone the repo to your computer
 - In your command line run `npm install` to install dependencies
-- to start the server run `npm run server`
-- to start the app UI run `npm start`
+- Build `npm run build`
+- Start the app `npm start`
