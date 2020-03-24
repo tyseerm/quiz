@@ -7,7 +7,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - The app has two modules, quiz maker and quiz taker
 - Quiz maker is a user who can create and manage quizzes, and send invitations to quiz takers
 - Quiz taker is a user who takes the quiz, as per the invitation recieved from the quiz maker
-- To create quizzes and manage quizzes you should login first (I will send username & password in one-one message)
+- [Click here](https://quiz-reactapp.herokuapp.com/) to create and manage quizzes (will send `username/password` in one-one message)
 - To test taking a quiz use [this link](https://quiz-reactapp.herokuapp.com/app/quiz/775df227-5ec9-4a2a-93eb-ffa8e4029f16)
 
 ## Context Daigram
