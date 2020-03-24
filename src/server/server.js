@@ -15,6 +15,7 @@ const port = process.env.PORT || 9999;
 
 const app = express();
 
+const prefix = '/api'
 
 
 
@@ -31,7 +32,7 @@ if(process.env.NODE_ENV === 'production'){
 
 
 
-app.post("/users/signin", async (req, res) => {
+app.post(`${prefix}/users/signin`, async (req, res) => {
   const db = await connectDB();
   const username = req.body.username;
   const password = req.body.password;
@@ -57,7 +58,7 @@ app.post("/users/signin", async (req, res) => {
   return res.json({ user: userObj, token });
 });
 
-app.get("/dashboard/:userId/quizzes", auth, async (req, res) => {
+app.get(`${prefix}/:userId/quizzes`, auth, async (req, res) => {
   const userId = req.params.userId;
   const db = await connectDB();
   const quizzes = await db
@@ -67,7 +68,7 @@ app.get("/dashboard/:userId/quizzes", auth, async (req, res) => {
   res.status(200).send(quizzes);
 });
 
-app.post("/dashboard/:userId/quizzes", auth, async (req, res) => {
+app.post(`${prefix}/:userId/quizzes`, auth, async (req, res) => {
   const quiz = req.body.quiz;
   const db = await connectDB();
   const result = await db
@@ -76,11 +77,11 @@ app.post("/dashboard/:userId/quizzes", auth, async (req, res) => {
 });
 
 
-app.get("/dashboard/:userId/quizzes/:quizId", auth, async (req, res) => {
+app.get(`${prefix}/:userId/quizzes/:quizId`, auth, async (req, res) => {
   console.log("YEs you are in the quiz url", req.originalUrl);
 });
 
-app.delete("/dashboard/:userId/quizzes/:quizId", auth, async (req, res) => {
+app.delete(`${prefix}/:userId/quizzes/:quizId`, auth, async (req, res) => {
   const userId = req.params.userId;
   const quizId = req.params.quizId;
   const db = await connectDB();
@@ -88,7 +89,7 @@ app.delete("/dashboard/:userId/quizzes/:quizId", auth, async (req, res) => {
   res.status(200).send("Quiz deleted successfully ;)");
 });
 
-app.post("/dashboard/:quizId/invitations", auth, async (req, res) => {
+app.post(`${prefix}/:quizId/invitations`, auth, async (req, res) => {
 
   const quizId = req.body.quizId;
   const email = req.body.email;
@@ -104,7 +105,7 @@ app.post("/dashboard/:quizId/invitations", auth, async (req, res) => {
   res.status(200).send(result);
 });
 
-app.put("/dashboard/:userId/quizzes/:quizId", auth, async (req, res) => {
+app.put(`${prefix}/:userId/quizzes/:quizId`, auth, async (req, res) => {
 
   const quiz = req.body.quiz;
   const db = await connectDB();
@@ -114,7 +115,7 @@ app.put("/dashboard/:userId/quizzes/:quizId", auth, async (req, res) => {
   res.status(200).send(result);
 });
 
-app.get("/questions", async (req, res) => {
+app.get(`${prefix}/questions`, async (req, res) => {
   const db = await connectDB();
   const quiz = await db.collection("quizzes").findOne({ id: "q1" });
 
@@ -122,7 +123,7 @@ app.get("/questions", async (req, res) => {
 });
 
 
-app.get("/quiz/:invitationId", async (req, res) => {
+app.get(`${prefix}/quiz/:invitationId`, async (req, res) => {
   const invitationId = req.params.invitationId;
   
   
@@ -140,7 +141,7 @@ app.get("/quiz/:invitationId", async (req, res) => {
  
 });
 
-app.post("/score", async (req, res) => {
+app.post(`${prefix}/score`, async (req, res) => {
   
   const {attempts, quizId} = req.body;
   

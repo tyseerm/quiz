@@ -129,7 +129,7 @@ export function* addQuizSaga() {
 
       const addQuizOptions = optionsForAddQuiz(token, quiz);
 
-      const { result } = yield makeRequest(addQuizOptions);
+      yield makeRequest(addQuizOptions);
       
       yield put(addQuizSuccess());
       yield put(closeQuizForm());
@@ -149,7 +149,7 @@ export function* sendInvitationSaga() {
       
       const sendInviteOptions = optionsForSendInvite(token, email, id);
 
-      const { result } = yield makeRequest(sendInviteOptions);
+      yield makeRequest(sendInviteOptions);
       
 
     } catch (error) {
