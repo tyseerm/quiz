@@ -23,12 +23,16 @@ app.listen(port, console.log(`servers listening on port: ${port}`));
 
 app.use(cors(), bodyParser.urlencoded({ extended: true }), bodyParser.json());
 
-if(process.env.NODE_ENV === 'production'){
+
   app.use(express.static(path.resolve(__dirname,'../../build')))
-  app.get('/*', (req,res)=> {
-    res.sendFile(path.resolve('index.html'))
+
+  app.get('/', (req,res)=> {
+    res.sendFile(path.resolve('./build/index.html'))
   })
-}
+  app.get('/app/*', (req,res)=> {
+    res.sendFile(path.resolve('./build/index.html'))
+  })
+
 
 
 

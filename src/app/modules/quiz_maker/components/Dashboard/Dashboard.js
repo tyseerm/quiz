@@ -43,6 +43,8 @@ const Dashboard = ({
       questions: [],
       new: true
     }
+    console.log('quizzes: ', quizzes);
+    
     return (
       <div className="container">
         <Button onClick={() => onEditQuiz(newQuiz)}>Add Quiz</Button>
