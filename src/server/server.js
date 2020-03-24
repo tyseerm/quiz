@@ -103,7 +103,7 @@ app.post(`${prefix}/:quizId/invitations`, auth, async (req, res) => {
     .collection("invitations")
     .insertOne({ id, email, quiz: quizId,});
   
-    const emailOptions = mailOptionsCreator(email, `${process.env.APP_HOST}/quiz/${id}`)
+    const emailOptions = mailOptionsCreator(email, `${process.env.APP_HOST}/app/quiz/${id}`)
     sendEmail(emailOptions)
 
   res.status(200).send(result);
